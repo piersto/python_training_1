@@ -13,14 +13,12 @@ class UntitledTestCase(unittest.TestCase):
         self.login(username="admin", password="secret")
         self.open_add_new_contact_page()
         self.fill_in_contact_form(Contact(firstname='First name', middlename='Middlename', lastname='Lastname'))
-        self.return_on_home_page()
 
     def test_add_empty_contact(self):
         wd = self.wd
         self.login(username="admin", password="secret")
         self.open_add_new_contact_page()
         self.fill_in_contact_form(Contact(firstname='', middlename='', lastname=''))
-        self.return_on_home_page()
 
     def return_on_home_page(self):
         wd = self.wd
@@ -41,6 +39,8 @@ class UntitledTestCase(unittest.TestCase):
         wd.find_element_by_name("lastname").clear()
         wd.find_element_by_name("lastname").send_keys(contact.lastname)
         self.submit_contact_form()
+        self.return_on_home_page()
+
 
 
     def open_add_new_contact_page(self):
